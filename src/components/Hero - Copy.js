@@ -5,6 +5,11 @@ import { motion } from 'framer-motion'
 import profileImage from './about1.jpg'
 import '../GridBackground.css'
 import p1Image from './p1.png'
+import p2Image from './p2.png'
+import p3Image from './p3.png'
+import p4Image from './p4.png'
+import p5Image from './p5.png'
+import p6Image from './p6.png'
 import { debounce } from 'lodash' // Keep only one import
 
 // Crystal Component
@@ -55,12 +60,40 @@ function Hero() {
   }
 
   const projects = [
-    { id: 1, title: 'Project 1', description: 'Description for Project 1' },
-    { id: 2, title: 'Project 2', description: 'Description for Project 2' },
-    { id: 3, title: 'Project 3', description: 'Description for Project 3' },
-    { id: 4, title: 'Project 4', description: 'Description for Project 4' },
-    { id: 5, title: 'Project 5', description: 'Description for Project 5' },
-    { id: 6, title: 'Project 6', description: 'Description for Project 6' },
+    {
+      id: 1,
+      title: 'Starweb Prohost',
+      description: 'My current web design website',
+    },
+    {
+      id: 2,
+      title: 'Supplies Plus',
+      description:
+        'Added 600 000 paint code database to existing strore and a dynamic shopping cart page for their products',
+    },
+    {
+      id: 3,
+      title: 'Bolting Symposium',
+      description:
+        'Designed a site from scratch for a client that wanted to sell tickets for a show',
+    },
+    {
+      id: 4,
+      title: 'Build-a-Burger',
+      description:
+        'React App that lets user add ingredients to display a burger and total caloric intake',
+    },
+    {
+      id: 5,
+      title: 'MooMoo',
+      description:
+        'React App with FDA API integration, allows user to looks up caloric intake for any food item',
+    },
+    {
+      id: 6,
+      title: 'My Portfolio',
+      description: 'React portfolio with 3-D js image and grid background',
+    },
   ]
 
   const selectedItem = projects.find(
@@ -99,18 +132,22 @@ function Hero() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <img
-          src={profileImage}
-          alt="Your Name"
-          className="w-32 h-32 rounded-full border-4 border-cyan-400"
-        />
-        <h1 className="text-white text-4xl md:text-6xl font-bold">
-          James Spyrou
-        </h1>
-        <div className="text-cyan-300 text-lg md:text-2xl space-y-1">
-          <p>UI/UX Explorer</p>
-          <p>Web Developer</p>
-          <p>React Enthusiast</p>
+        <div className="flex flex-col md:flex-row items-center md:items-start">
+          <img
+            src={profileImage}
+            alt="Your Name"
+            className="w-48 h-48 rounded-full border-4 border-cyan-400 md:mr-12"
+          />
+          <div className="text-center md:text-left">
+            <h1 className="text-white text-4xl md:text-6xl font-bold mb-6">
+              James Spyrou
+            </h1>
+            <div className="text-cyan-300 text-lg md:text-2xl space-y-2">
+              <p>UI/UX Explorer</p>
+              <p>Web Developer</p>
+              <p>React Enthusiast</p>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -159,10 +196,23 @@ function Hero() {
               className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
             >
               <img
-                src={p1Image}
+                src={
+                  project.id === 2
+                    ? p2Image
+                    : project.id === 3
+                    ? p3Image
+                    : project.id === 4
+                    ? p4Image
+                    : project.id === 5
+                    ? p5Image
+                    : project.id === 6
+                    ? p6Image
+                    : p1Image
+                }
                 alt={project.title}
-                className="w-full max-w-lg rounded-lg mb-4"
+                className="w-[440px] h-[290px] object-cover rounded-lg mb-4"
               />
+
               <h2 className="text-white text-xl text-center">
                 {project.title}
               </h2>
@@ -170,18 +220,54 @@ function Hero() {
           ))}
 
         {/* Display selected project UI when a project is selected */}
-        {selectedProject && (
+        {selectedProject && selectedItem && (
           <>
             {/* Left Column (Selected Project) */}
             <div className="bg-gray-700 rounded-lg p-6 flex flex-col justify-between ring-4 ring-cyan-500 h-full">
               <img
-                src={p1Image}
+                src={
+                  selectedItem.id === 2
+                    ? p2Image
+                    : selectedItem.id === 3
+                    ? p3Image
+                    : selectedItem.id === 4
+                    ? p4Image
+                    : selectedItem.id === 5
+                    ? p5Image
+                    : selectedItem.id === 6
+                    ? p6Image
+                    : p1Image
+                }
                 alt={selectedItem.title}
-                className="w-full rounded-lg mb-4"
+                className="w-[1100px] h-[700px] object-cover rounded-lg mb-4"
               />
-              <h2 className="text-white text-2xl font-bold text-center">
-                {selectedItem.title}
-              </h2>
+              {selectedItem.id >= 1 && selectedItem.id <= 6 ? (
+                <a
+                  href={
+                    selectedItem.id === 1
+                      ? 'https://starwebprohost.com/'
+                      : selectedItem.id === 2
+                      ? 'https://suppliesplusautoproducts.com/pages/automotive-touchup-paint.html'
+                      : selectedItem.id === 3
+                      ? 'https://boltingsymposium.com'
+                      : selectedItem.id === 4
+                      ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/meals'
+                      : selectedItem.id === 5
+                      ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/'
+                      : 'https://www.jamesspyrou.dev/'
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-2xl font-bold text-center hover:text-cyan-400 transition"
+                >
+                  {selectedItem.title}
+                </a>
+              ) : (
+                <span className="text-gray-400 text-2xl font-bold text-center">
+                  {selectedItem.title}
+                </span>
+              )}
+
               <p className="text-gray-300 mt-4 text-center">
                 {selectedItem.description}
               </p>
@@ -196,9 +282,21 @@ function Hero() {
                   className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
                 >
                   <img
-                    src={p1Image}
+                    src={
+                      project.id === 2
+                        ? p2Image
+                        : project.id === 3
+                        ? p3Image
+                        : project.id === 4
+                        ? p4Image
+                        : project.id === 5
+                        ? p5Image
+                        : project.id === 6
+                        ? p6Image
+                        : p1Image
+                    }
                     alt={project.title}
-                    className="w-full max-w-[150px] rounded-lg mb-2"
+                    className="w-[150px] h-[100px] object-cover rounded-lg mb-2"
                   />
                   <h2 className="text-white text-sm text-center">
                     {project.title}
