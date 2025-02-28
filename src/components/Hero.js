@@ -105,7 +105,7 @@ function Hero() {
   )
 
   return (
-    <div className="relative w-screen overflow-y-auto">
+    <div className="relative w-full min-h-screen">
       {/* Fixed Background Layer */}
       <div
         className={`fixed inset-0 -z-20 bg-gradient-to-b from-gray-800 to-gray-900`}
