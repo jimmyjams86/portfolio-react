@@ -11,6 +11,7 @@ import p4Image from './p4.png'
 import p5Image from './p5.png'
 import p6Image from './p6.png'
 import { debounce } from 'lodash' // Keep only one import
+import MobileProjects from './MobileProjects'
 
 // Crystal Component
 function Crystal() {
@@ -177,136 +178,140 @@ function Hero() {
       </motion.div>
 
       {/* Work Grid Section */}
-      <motion.div
-        className={`h-screen p-8 grid gap-6 transition-all duration-500 ${
-          selectedProject
-            ? 'grid-cols-[.6fr_.4fr]'
-            : 'grid-cols-1 md:grid-cols-3'
-        }`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Display all projects when no project is selected */}
-        {!selectedProject &&
-          projects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => handleProjectClick(project.id)}
-              className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
-            >
-              <img
-                src={
-                  project.id === 2
-                    ? p2Image
-                    : project.id === 3
-                    ? p3Image
-                    : project.id === 4
-                    ? p4Image
-                    : project.id === 5
-                    ? p5Image
-                    : project.id === 6
-                    ? p6Image
-                    : p1Image
-                }
-                alt={project.title}
-                className="w-[440px] h-[290px] object-cover rounded-lg mb-4"
-              />
-
-              <h2 className="text-white text-xl text-center">
-                {project.title}
-              </h2>
-            </div>
-          ))}
-
-        {/* Display selected project UI when a project is selected */}
-        {selectedProject && selectedItem && (
-          <>
-            {/* Left Column (Selected Project) */}
-            <div className="bg-gray-700 rounded-lg p-6 flex flex-col justify-between ring-4 ring-cyan-500 h-full">
-              <img
-                src={
-                  selectedItem.id === 2
-                    ? p2Image
-                    : selectedItem.id === 3
-                    ? p3Image
-                    : selectedItem.id === 4
-                    ? p4Image
-                    : selectedItem.id === 5
-                    ? p5Image
-                    : selectedItem.id === 6
-                    ? p6Image
-                    : p1Image
-                }
-                alt={selectedItem.title}
-                className="w-[1100px] h-[700px] object-cover rounded-lg mb-4"
-              />
-              {selectedItem.id >= 1 && selectedItem.id <= 6 ? (
-                <a
-                  href={
-                    selectedItem.id === 1
-                      ? 'https://starwebcreation.com/'
-                      : selectedItem.id === 2
-                      ? 'https://suppliesplusautoproducts.com/pages/automotive-touchup-paint.html'
-                      : selectedItem.id === 3
-                      ? 'https://boltingsymposium.com'
-                      : selectedItem.id === 4
-                      ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/meals'
-                      : selectedItem.id === 5
-                      ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/'
-                      : 'https://www.jamesspyrou.dev/'
+      {window.innerWidth < 768 ? (
+        <MobileProjects />
+      ) : (
+        <motion.div
+          className={`h-screen p-8 grid gap-6 transition-all duration-500 ${
+            selectedProject
+              ? 'grid-cols-[.6fr_.4fr]'
+              : 'grid-cols-1 md:grid-cols-3'
+          }`}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Display all projects when no project is selected */}
+          {!selectedProject &&
+            projects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => handleProjectClick(project.id)}
+                className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
+              >
+                <img
+                  src={
+                    project.id === 2
+                      ? p2Image
+                      : project.id === 3
+                      ? p3Image
+                      : project.id === 4
+                      ? p4Image
+                      : project.id === 5
+                      ? p5Image
+                      : project.id === 6
+                      ? p6Image
+                      : p1Image
                   }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white text-2xl font-bold text-center hover:text-cyan-400 transition"
-                >
-                  {selectedItem.title}
-                </a>
-              ) : (
-                <span className="text-gray-400 text-2xl font-bold text-center">
-                  {selectedItem.title}
-                </span>
-              )}
+                  alt={project.title}
+                  className="w-[440px] h-[290px] object-cover rounded-lg mb-4"
+                />
 
-              <p className="text-gray-300 mt-4 text-center">
-                {selectedItem.description}
-              </p>
-            </div>
+                <h2 className="text-white text-xl text-center">
+                  {project.title}
+                </h2>
+              </div>
+            ))}
 
-            {/* Right Column (Remaining Projects) */}
-            <div className="flex flex-col space-y-3 overflow-y-auto h-full">
-              {remainingItems.map((project) => (
-                <div
-                  key={project.id}
-                  onClick={() => handleProjectClick(project.id)}
-                  className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
-                >
-                  <img
-                    src={
-                      project.id === 2
-                        ? p2Image
-                        : project.id === 3
-                        ? p3Image
-                        : project.id === 4
-                        ? p4Image
-                        : project.id === 5
-                        ? p5Image
-                        : project.id === 6
-                        ? p6Image
-                        : p1Image
+          {/* Display selected project UI when a project is selected */}
+          {selectedProject && selectedItem && (
+            <>
+              {/* Left Column (Selected Project) */}
+              <div className="bg-gray-700 rounded-lg p-6 flex flex-col justify-between ring-4 ring-cyan-500 h-full">
+                <img
+                  src={
+                    selectedItem.id === 2
+                      ? p2Image
+                      : selectedItem.id === 3
+                      ? p3Image
+                      : selectedItem.id === 4
+                      ? p4Image
+                      : selectedItem.id === 5
+                      ? p5Image
+                      : selectedItem.id === 6
+                      ? p6Image
+                      : p1Image
+                  }
+                  alt={selectedItem.title}
+                  className="w-[1100px] h-[700px] object-cover rounded-lg mb-4"
+                />
+                {selectedItem.id >= 1 && selectedItem.id <= 6 ? (
+                  <a
+                    href={
+                      selectedItem.id === 1
+                        ? 'https://starwebcreation.com/'
+                        : selectedItem.id === 2
+                        ? 'https://suppliesplusautoproducts.com/pages/automotive-touchup-paint.html'
+                        : selectedItem.id === 3
+                        ? 'https://boltingsymposium.com'
+                        : selectedItem.id === 4
+                        ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/meals'
+                        : selectedItem.id === 5
+                        ? 'https://build-a-burger-3emlcqm30-james-spyrous-projects.vercel.app/'
+                        : 'https://www.jamesspyrou.dev/'
                     }
-                    alt={project.title}
-                    className="w-[150px] h-[100px] object-cover rounded-lg mb-2"
-                  />
-                  <h2 className="text-white text-sm text-center">
-                    {project.title}
-                  </h2>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </motion.div>
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white text-2xl font-bold text-center hover:text-cyan-400 transition"
+                  >
+                    {selectedItem.title}
+                  </a>
+                ) : (
+                  <span className="text-gray-400 text-2xl font-bold text-center">
+                    {selectedItem.title}
+                  </span>
+                )}
+
+                <p className="text-gray-300 mt-4 text-center">
+                  {selectedItem.description}
+                </p>
+              </div>
+
+              {/* Right Column (Remaining Projects) */}
+              <div className="flex flex-col space-y-3 overflow-y-auto h-full">
+                {remainingItems.map((project) => (
+                  <div
+                    key={project.id}
+                    onClick={() => handleProjectClick(project.id)}
+                    className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition flex flex-col items-center"
+                  >
+                    <img
+                      src={
+                        project.id === 2
+                          ? p2Image
+                          : project.id === 3
+                          ? p3Image
+                          : project.id === 4
+                          ? p4Image
+                          : project.id === 5
+                          ? p5Image
+                          : project.id === 6
+                          ? p6Image
+                          : p1Image
+                      }
+                      alt={project.title}
+                      className="w-[150px] h-[100px] object-cover rounded-lg mb-2"
+                    />
+                    <h2 className="text-white text-sm text-center">
+                      {project.title}
+                    </h2>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </motion.div>
+      )}
     </div>
   )
 }
