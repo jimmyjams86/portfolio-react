@@ -278,7 +278,7 @@ function Hero() {
               </div>
 
               {/* Right Column (Remaining Projects) */}
-              <div className="flex flex-col space-y-3 overflow-y-auto h-full">
+              <div className="flex flex-col space-y-3 h-full overflow-hidden">
                 {remainingItems.map((project) => (
                   <div
                     key={project.id}
