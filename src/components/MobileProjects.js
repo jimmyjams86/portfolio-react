@@ -29,7 +29,7 @@ const projects = [
 
 const MobileProjects = () => {
   return (
-    <div className="h-screen p-8 grid gap-6 grid-cols-1">
+    <div className="min-h-screen p-8 grid gap-6 grid-cols-1">
       {projects.map((project) => (
         <a
           key={project.id}
