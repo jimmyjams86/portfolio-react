@@ -128,7 +128,7 @@ function Hero() {
 
       {/* About Me Section */}
       <motion.div
-        className="h-screen flex flex-col items-center justify-center space-y-4"
+        className="min-h-screen flex flex-col items-center justify-center space-y-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -154,7 +154,7 @@ function Hero() {
 
       {/* Skills Section */}
       <motion.div
-        className="h-screen flex items-center justify-center"
+        className="min-h-screen flex items-center justify-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -182,7 +182,7 @@ function Hero() {
         <MobileProjects />
       ) : (
         <motion.div
-          className={`h-screen p-8 grid gap-6 transition-all duration-500 ${
+          className={`min-h-screen p-8 grid gap-6 transition-all duration-500 ${
             selectedProject
               ? 'grid-cols-[.6fr_.4fr]'
               : 'grid-cols-1 md:grid-cols-3'
